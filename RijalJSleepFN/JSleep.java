@@ -1,4 +1,4 @@
-package RijalJSleepDN;
+package RijalJSleepFN;
 
 import java.util.Scanner;
 
