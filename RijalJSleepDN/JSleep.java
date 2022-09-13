@@ -5,7 +5,7 @@ import java.util.Scanner;
 //MODUL 1 PERKENALANm
 public class JSleep {
     public static void main(String[] args) throws Exception {
-        System.out.println("Warming up Jmart");
+        System.out.println("Warming up JSleep");
         Scanner input = new Scanner(System.in);
         System.out.println("========================TESTING METHOD============================");
         System.out.print("Masukan harga awal    : ");
