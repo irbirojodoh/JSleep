@@ -18,6 +18,7 @@ public class JSleep {
         System.out.println("==================================================================");
         System.out.println("Testing getHotelId              : " + getHotelId());
         System.out.println("Testing getHotelName            : " + getHotelName());
+        System.out.println("Testing isDiscount              : " + isDiscount() );
         System.out.println("Testing getDiscountPercentage   : " + getDiscountPercentage(hargaAwal, hargaAkhir)+"%");
         System.out.println("Testing getDiscoutedPrice       : Rp" + getDiscountedPrice(hargaAwal, getDiscountPercentage(hargaAwal, hargaAkhir)));
         System.out.println("Testing getOriginalPrice        : Rp" + getOriginalPrice(getDiscountedPrice(hargaAwal, getDiscountPercentage(hargaAwal, hargaAkhir)), getDiscountPercentage(hargaAwal, hargaAkhir)));
