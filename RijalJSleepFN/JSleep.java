@@ -2,9 +2,22 @@ package RijalJSleepFN;
 
 import java.util.Scanner;
 
-//MODUL 1 PERKENALANm
+//MODUL 1 PERKENALAN
 public class JSleep {
-    public static void main(String[] args) throws Exception {
+
+
+    static Room createRoom(){
+        Price price= new Price(1000000, 5);
+        Room room = new Room("Deluxe", 2, price, Facility.AC);
+        return room;
+    }
+    public static void main(String[] args){
+        Room test = createRoom();
+        System.out.println(test.name);
+        System.out.println(test.size);
+        System.out.println(test.price.price);
+        System.out.println(test.facility);
+        /*bekas kemaren 
         System.out.println("Warming up JSleep");
         Scanner input = new Scanner(System.in);
         System.out.println("========================TESTING METHOD============================");
@@ -24,9 +37,15 @@ public class JSleep {
         System.out.println("Testing getOriginalPrice        : Rp" + getOriginalPrice(getDiscountedPrice(hargaAwal, getDiscountPercentage(hargaAwal, hargaAkhir)), getDiscountPercentage(hargaAwal, hargaAkhir)));
         System.out.println("Testing getAdminFeePercentage   : " + getAdminFeePercentage()*100+"%");
         System.out.println("Testing getAdminFee             : Rp" + getAdminFee(hargaAwal));
-        System.out.println("Testing getTotalPrice           : Rp" + getTotalPrice(hargaAwal, nights));
+        System.out.println("Testing getTotalPrice           : Rp" + getTotalPrice(hargaAwal, nights)); */
     }
-    static int getHotelId(){
+
+    
+   
+
+
+    //Bekas kemaren
+   /*  static int getHotelId(){
         return 0;
     }
     static String getHotelName(){
@@ -64,4 +83,11 @@ public class JSleep {
     static int getTotalPrice(int price, int numberOfNight){
         return (price + getAdminFee(price)) * numberOfNight;
     }
+    static float getAverage(int[] numbers){
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        return (float) sum / numbers.length;
+    }*/
 }
