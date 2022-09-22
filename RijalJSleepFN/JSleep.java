@@ -1,14 +1,14 @@
 package RijalJSleepFN;
 
-import java.util.Scanner;
+
 
 //MODUL 1 PERKENALAN
 public class JSleep {
 
 
     public static Room createRoom(){
-        Price price= new Price(1000000, 5);
-        Room room = new Room("Deluxe", 2, price, Facility.AC);
+        Price price= new Price(100000, 5);
+        Room room = new Room("hotel", 30, price, Facility.AC);
         return room;
     }
     public static void main(String[] args){
