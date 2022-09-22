@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class JSleep {
 
 
-    static Room createRoom(){
+    public static Room createRoom(){
         Price price= new Price(1000000, 5);
         Room room = new Room("Deluxe", 2, price, Facility.AC);
         return room;

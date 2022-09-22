@@ -11,6 +11,7 @@ public class Rating {
     }
     public void insert(int rating){
         this.total += rating;
+        count++;
     }
     public double getAverage(){
         if(this.count == 0){
