@@ -9,7 +9,7 @@ public class Renter extends Serializable {
    
     public Renter(int id, String username){
         super(id);
-        this.id = id;
+       // this.id = id;
         this.username = username;
     }
 
