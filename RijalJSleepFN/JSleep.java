@@ -6,17 +6,16 @@ package RijalJSleepFN;
 public class JSleep {
 
 
-    public static Room createRoom(){
-        Price price= new Price(100000, 5);
-        Room room = new Room("hotel", 30, price, Facility.AC);
-        return room;
-    }
+    // public static Room createRoom(){
+    //     Price price= new Price(1000000, 5);
+    //    // Room room = new Room("Deluxe", 2, price, Facility.AC);
+    //     return room;
+    // }
     public static void main(String[] args){
-        Room test = createRoom();
-        System.out.println(test.name);
-        System.out.println(test.size);
-        System.out.println(test.price.price);
-        System.out.println(test.facility);
+        Payment testRoom = new Payment(1, 1, 1, "", 1, "", ""); 
+        Invoice testInvoice = new Invoice(2,2,2, ""); 
+        System.out.println(testRoom.print()); 
+        System.out.println(testInvoice.print());
         /*bekas kemaren 
         System.out.println("Warming up JSleep");
         Scanner input = new Scanner(System.in);

@@ -3,7 +3,7 @@ package RijalJSleepFN;
 
 
 
-public class Voucher {
+public class Voucher extends Serializable {
     
 
     public Type type;
@@ -13,8 +13,8 @@ public class Voucher {
     public double minimum;
     private boolean used;
 
-    public Voucher(String name, int code, Type type, double minimum, double cut) {
-
+    public Voucher(int id, String name, int code, Type type, double minimum, double cut) {
+        super(id);
         this.name = name;
         this.code = code;
         this.type = type;
@@ -47,7 +47,7 @@ public class Voucher {
     }
 
     public boolean isUsed(){
-        return this.used;
+        return used;
     }
 } 
     

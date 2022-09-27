@@ -2,7 +2,7 @@ package RijalJSleepFN;
 
 
  public enum Facility {
-        WiFi,Bathtub,Balcony,
+        WiFi,Baththub,Balcony,
         AC,FitnessCenter,Refrigerator,
         Restaurant,SwimmingPool
     }

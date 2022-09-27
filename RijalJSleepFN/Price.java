@@ -4,7 +4,7 @@ public class Price {
     
     public double price;
    // public double rebate;
-    public double discount;
+    public int discount;
 
     public Price (double price){
         this.price = price;
@@ -12,7 +12,7 @@ public class Price {
        // this.rebate = 0;
     }
 
-    public Price(double price, double discount){
+    public Price(double price, int discount){
         this.price = price;
         this.discount = discount;
         //this.rebate = 0;
