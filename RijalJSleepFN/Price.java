@@ -5,7 +5,7 @@ public class Price {
     public double price;
    // public double rebate;
     public int discount;
-
+    /** */
     public Price (double price){
         this.price = price;
         this.discount = 0;

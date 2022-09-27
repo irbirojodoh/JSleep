@@ -2,6 +2,7 @@
 comment0.target=Invoice
 comment1.params=id\ buyerId\ renterId\ time
 comment1.target=Invoice(int,\ int,\ int,\ java.lang.String)
+comment1.text=
 comment2.params=id\ buyer\ renter\ time
 comment2.target=Invoice(int,\ Account,\ Renter,\ java.lang.String)
 comment3.params=

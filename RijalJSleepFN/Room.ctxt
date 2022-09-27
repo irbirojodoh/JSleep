@@ -2,4 +2,5 @@
 comment0.target=Room
 comment1.params=id\ name\ size\ price\ facility
 comment1.target=Room(int,\ java.lang.String,\ int,\ Price,\ Facility)
+comment1.text=
 numComments=2

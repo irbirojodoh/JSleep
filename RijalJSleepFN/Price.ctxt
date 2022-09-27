@@ -2,6 +2,7 @@
 comment0.target=Price
 comment1.params=price
 comment1.target=Price(double)
+comment1.text=
 comment2.params=price\ discount
 comment2.target=Price(double,\ int)
 numComments=3

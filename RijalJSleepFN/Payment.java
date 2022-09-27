@@ -4,7 +4,8 @@ public class Payment extends Invoice {
     public String to;
     public String from;
     private int roomId;
-
+    
+    /** constructor untuk melakukan pengisian thd var instance */
     public Payment(int id, int buyerId, int renterId, String time, int roomId, String from, String to){
         super(id, buyerId, renterId, time);
         this.to = to;

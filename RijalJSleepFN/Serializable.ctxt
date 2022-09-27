@@ -2,4 +2,5 @@
 comment0.target=Serializable
 comment1.params=id
 comment1.target=Serializable(int)
+comment1.text=
 numComments=2

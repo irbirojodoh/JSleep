@@ -11,6 +11,7 @@ public class JSleep {
     //    // Room room = new Room("Deluxe", 2, price, Facility.AC);
     //     return room;
     // }
+    /** Testing projec*/
     public static void main(String[] args){
         Payment testRoom = new Payment(1, 1, 1, "", 1, "", ""); 
         Invoice testInvoice = new Invoice(2,2,2, ""); 

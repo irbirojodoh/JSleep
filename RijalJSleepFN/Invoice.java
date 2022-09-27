@@ -6,6 +6,7 @@ public class Invoice extends Serializable {
     public int renterId;
     public String time;
 
+    /** */
     protected Invoice(int id, int buyerId, int renterId, String time){
         super(id);
         this.buyerId = buyerId;
@@ -17,7 +18,6 @@ public class Invoice extends Serializable {
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = time;
-        //masi blum yakin
     }
     public String print(){
         return "Var buyerID, renterID, time: " + buyerId + ", " + renterId + ", " + time;

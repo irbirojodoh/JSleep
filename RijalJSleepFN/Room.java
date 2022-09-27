@@ -7,7 +7,7 @@ public class Room extends Serializable {
     public Price price;
 
 
-
+    /** */
     public Room(int id, String name, int size, Price price, Facility facility){
         super(id);
         this.name = name;
