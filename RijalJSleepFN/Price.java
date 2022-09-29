@@ -18,6 +18,11 @@ public class Price {
         //this.rebate = 0;
     }
 
+
+    public String toString() {
+        return "discount=" + discount + ", price=" + price;
+    }
+
    /*  public Price(double price, double rebate){
         this.price = price;
         //this.rebate = discount;
@@ -44,4 +49,5 @@ public class Price {
 
     }
     */
+    
 }

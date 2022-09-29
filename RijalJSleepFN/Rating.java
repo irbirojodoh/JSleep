@@ -27,4 +27,9 @@ public class Rating {
     public long getTotal(){
         return this.total;
     }
+    
+    public String toString() {
+        return "count=" + count + ", total=" + total ;
+    }
+    
 }
