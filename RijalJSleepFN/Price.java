@@ -20,7 +20,7 @@ public class Price {
 
 
     public String toString() {
-        return "discount=" + discount + ", price=" + price;
+        return "discount=" + this.discount + ", price=" + this.price;
     }
 
    /*  public Price(double price, double rebate){

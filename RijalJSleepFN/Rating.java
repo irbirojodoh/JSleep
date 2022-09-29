@@ -29,7 +29,7 @@ public class Rating {
     }
     
     public String toString() {
-        return "count=" + count + ", total=" + total ;
+        return "count=" + this.count + ", total=" + this.total ;
     }
     
 }

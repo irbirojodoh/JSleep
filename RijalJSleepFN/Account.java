@@ -15,7 +15,7 @@ public class Account extends Serializable {
     }
 
     public String toString() {
-        return "email=" + email + ", name=" + name + ", password=" + password ;
+        return "email=" + this.email + ", name=" + this.name + ", password=" + this.password ;
     }
     
 }

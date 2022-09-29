@@ -22,8 +22,8 @@ public class Room extends Serializable {
     }
 
     public String toString() {
-        return "address=" + address + ", bedType=" + bedType + ", city=" + city + ", facility=" + facility
-                + ", name=" + name + ", price=" + price + ", size=" + size ;
+        return "address=" + this.address + ", bedType=" + this.bedType + ", city=" + this.city + ", facility=" + this.facility
+                + ", name=" + this.name + ", price=" + this.price + ", size=" + this.size ;
     }
 
 
