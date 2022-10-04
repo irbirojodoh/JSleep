@@ -37,7 +37,7 @@ public class Payment extends Invoice {
 
     public String getTime(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        return sdf.format(this.from.getTime());
+        return sdf.format(this.time.getTime());
     }
 
     public String getDuration(){
