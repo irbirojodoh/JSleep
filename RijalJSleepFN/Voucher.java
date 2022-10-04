@@ -3,7 +3,7 @@ package RijalJSleepFN;
 
 
 
-public class Voucher extends Serializable {
+public class Voucher extends Serializable implements FileParser {
     
 
     public Type type;
@@ -48,6 +48,16 @@ public class Voucher extends Serializable {
 
     public boolean isUsed(){
         return this.used;
+    }
+
+    @Override
+    public boolean read(String xxx){
+        return true;
+    }
+
+    @Override
+    public Object write(){
+        return null;
     }
 } 
     

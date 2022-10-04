@@ -1,6 +1,6 @@
 package RijalJSleepFN;
 
-public class Room extends Serializable {
+public class Room extends Serializable implements FileParser {
     public int size;
     public String name;
     public String address;
@@ -25,7 +25,15 @@ public class Room extends Serializable {
         return "address=" + this.address + ", bedType=" + this.bedType + ", city=" + this.city + ", facility=" + this.facility
                 + ", name=" + this.name + ", price=" + this.price + ", size=" + this.size ;
     }
+    @Override
+    public boolean read(String xxx){
+        return true;
+    }
 
+    @Override
+    public Object write(){
+        return null;
+    }
 
     
 }
