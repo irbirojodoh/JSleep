@@ -1,5 +1,6 @@
 package RijalJSleepFN;
 
+import java.util.*;
 public class Room extends Serializable implements FileParser {
     public int size;
     public String name;
@@ -8,8 +9,7 @@ public class Room extends Serializable implements FileParser {
     public Price price;
     public BedType bedType;
     public City city;
-
-
+    public ArrayList<Date> booked;
     /** */
     public Room(int id, String name, int size, Price price, Facility facility, City city, String address){
         super(id);
@@ -19,6 +19,7 @@ public class Room extends Serializable implements FileParser {
         this.facility = facility;
         this.city = city;
         this.address = address;
+        this.booked = new ArrayList<Date>();
     }
 
     public String toString() {

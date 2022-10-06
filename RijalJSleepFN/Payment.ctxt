@@ -1,16 +1,18 @@
 #BlueJ class context
 comment0.target=Payment
-comment1.params=id\ buyerId\ renterId\ roomId
-comment1.target=Payment(int,\ int,\ int,\ int)
+comment1.params=id\ buyerId\ renterId\ roomId\ from\ to
+comment1.target=Payment(int,\ int,\ int,\ int,\ java.util.Date,\ java.util.Date)
 comment1.text=constructor\ untuk\ melakukan\ pengisian\ thd\ var\ instance
-comment2.params=id\ buyer\ renter\ roomId
-comment2.target=Payment(int,\ Account,\ Renter,\ int)
+comment2.params=id\ buyer\ renter\ roomId\ from\ to
+comment2.target=Payment(int,\ Account,\ Renter,\ int,\ java.util.Date,\ java.util.Date)
 comment3.params=
 comment3.target=java.lang.String\ print()
 comment4.params=
 comment4.target=int\ getRoomId()
 comment5.params=
 comment5.target=java.lang.String\ getTime()
-comment6.params=
-comment6.target=java.lang.String\ getDuration()
-numComments=7
+comment6.params=from\ to\ room
+comment6.target=boolean\ availability(java.util.Date,\ java.util.Date,\ Room)
+comment7.params=from\ to\ room
+comment7.target=boolean\ makeBooking(java.util.Date,\ java.util.Date,\ Room)
+numComments=8
