@@ -2,7 +2,7 @@ package RijalJSleepFN;
 
 //import java.util.*;
 import java.sql.*;
-
+import java.util.ArrayList;
 
 
 //MODUL 1 PERKENALAN
@@ -11,13 +11,19 @@ public class JSleep {
 
     public static Room createRoom(){
         Price price = new Price(100000.0,5);
-        Room room = new Room(12,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
+        Room room = new Room(12,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan", BedType.KING);
        return room;
     }
     /** Testing projec*/
     public static void main(String[] args){
 
         System.out.println("HELLO FROM INTELIJ");
+
+        ArrayList<Room> RoomSerialized = new ArrayList<Room>();
+        for (int i = 0; i < 10; i++) {
+            RoomSerialized.add(i, JSleep.createRoom());
+            System.out.println(RoomSerialized.get(i).toString());
+        }
         //testing commit push dari intelij
         /*
         Room RoomA = JSleep.createRoom();
@@ -61,8 +67,8 @@ public class JSleep {
         System.out.println("Testing getTotalPrice           : Rp" + getTotalPrice(hargaAwal, nights)); */
     }
 
-    
-   
+
+
 
 
     //Bekas kemaren

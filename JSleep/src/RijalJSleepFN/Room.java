@@ -11,19 +11,29 @@ public class Room extends Serializable implements FileParser {
     public City city;
     public ArrayList<Date> booked;
     /** */
-    public Room(int id, String name, int size, Price price, Facility facility, City city, String address){
-        super(id);
+    public Room(int id, String name, int size, Price price, Facility facility, City city, String address, BedType bedType){
+        //super(id);
         this.name = name;
         this.size = size;
         this.price = price;
         this.facility = facility;
         this.city = city;
         this.address = address;
+        this.bedType = bedType;
+        this.booked = new ArrayList<Date>();
+      //  super(id);
+        this.name = name;
+        this.size = size;
+        this.price = price;
+        this.facility = facility;
+        this.city = city;
+        this.address = address;
+        this.bedType = bedType;
         this.booked = new ArrayList<Date>();
     }
 
     public String toString() {
-        return "address=" + this.address + ", bedType=" + this.bedType + ", city=" + this.city + ", facility=" + this.facility
+        return "id = " + this.id + "address=" + this.address + ", bedType=" + this.bedType + ", city=" + this.city + ", facility=" + this.facility
                 + ", name=" + this.name + ", price=" + this.price + ", size=" + this.size ;
     }
     @Override
