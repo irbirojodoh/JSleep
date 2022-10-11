@@ -8,14 +8,7 @@ public class Algorithm {
     private Algorithm() {
         //do nothing
     }
-
-
-
-
-
-
-
-
+    //exist==================================
     public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
         while (iterator.hasNext()){
             T current = iterator.next();
@@ -23,9 +16,10 @@ public class Algorithm {
                 return true;
             }
         }
-
         return false;
     }
+
+
     public static <T> boolean exists(Iterator<T> iterator, T value){
         final Predicate<T> pred = value::equals;
         return exists(iterator, pred);
@@ -50,122 +44,72 @@ public class Algorithm {
 
 
 
-//===========================================================
-
+// count===========================================================
 
     public static <T> int count(Iterator<T> iterator, T t_var){
-        int count = 0;
-        while (iterator.hasNext()){
-            if(iterator.next().equals(t_var)){
-                count++;
-            }
-        }
-        return count;
+        final Predicate<T> pred = t_var::equals;
+        return count(iterator, pred);
     }
 
-    public static int count(int[] arr, int t_var) {
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == t_var) {
-                count++;
-            }
-        }
-        return count;
+    public static <T> int count(T[] arr, T t_var) {
+        final Iterator<T> it = Arrays.stream(arr).iterator();
+        return count(it, t_var);
     }
 
     public static <T> int count(Iterable<T> iter, Predicate<T> predicate) {
-        int count = 0;
-        for (T t_var : iter) {
-            if (predicate.predicate(t_var)) {
-                count++;
-            }
-        }
-        return count;
+        final Iterator<T> it = iter.iterator();
+        return count(it, predicate);
     }
 
     public static <T> int count(T[] arr, Predicate<T> predicate) {
-        int count = 0;
-        for (T t_var : arr) {
-            if (predicate.predicate(t_var)) {
-                count++;
-            }
-        }
-        return count;
+        final Iterator<T> it = Arrays.stream(arr).iterator();
+        return count(it, predicate);
     }
 
 
     public static <T> int count(Iterator<T> iterator, Predicate<T> predicate) {
-        int count = 0;
-        while (iterator.hasNext()) {
-            if (predicate.predicate(iterator.next())) {
+       int count = 0;
+        while (iterator.hasNext()){
+            T current = iterator.next();
+            if(predicate.predicate(current)){
                 count++;
             }
         }
         return count;
     }
-
-
 
     public static <T> int count(Iterable<T> iterable, T t_var) {
-        int count = 0;
-        for (T t : iterable) {
-            if (t.equals(t_var)) {
-                count++;
-            }
-        }
-        return count;
+        final Iterator<T> it = iterable.iterator();
+        return count(it, t_var);
     }
 
 
-    //============================================================
+    //find ============================================================
     public static <T> T find(T[] arr, Predicate<T> predicate) {
-        for (T t_var : arr) {
-            if (predicate.predicate(t_var)) {
-                return t_var;
-            }
-        }
-        return null;
+        final Iterator<T> it = Arrays.stream(arr).iterator();
+        return find(it, predicate);
     }
 
     public static <T> T find(Iterable<T> iterable, Predicate<T> predicate) {
-        for (T t_var : iterable) {
-            if (predicate.predicate(t_var)) {
-                return t_var;
-            }
-        }
-        return null;
+        final Iterator<T> it = iterable.iterator();
+        return find(it, predicate);
     }
 
-
-
     public static <T> T find(T[] arr, T t_var) {
-        for (T t : arr) {
-            if (t.equals(t_var)) {
-                return t;
-            }
-        }
-        return null;
+        final Iterator<T> it = Arrays.stream(arr).iterator();
+        return find(it, t_var);
     }
 
 
     public static <T> T find(Iterable<T> iterable, T t_var) {
-        for (T t : iterable) {
-            if (t.equals(t_var)) {
-                return t;
-            }
-        }
-        return null;
+        final Iterator<T> it = iterable.iterator();
+        return find(it, t_var);
     }
 
 
     public static <T> T find(Iterator<T> iterator, T t_var){
-        while (iterator.hasNext()){
-            T current = iterator.next();
-            if(current.equals(t_var)){
-                return current;
-            }
-        }
-        return null;
+        final Predicate<T> pred = t_var::equals;
+        return find(iterator, pred);
     }
 
     public static <T> T find(Iterator<T> iterator, Predicate<T> predicate){
