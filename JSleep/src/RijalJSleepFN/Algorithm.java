@@ -40,7 +40,7 @@ public class Algorithm {
     }
 
 
-    // count===========================================================
+    // count============================================================
 
     public static <T> int count(Iterator<T> iterator, T t_var){
         final Predicate<T> pred = t_var::equals;
