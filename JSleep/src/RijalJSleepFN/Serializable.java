@@ -45,11 +45,11 @@ public class Serializable {
     }
 
 
-    public <T> Integer getClosingId(Class<T> t) {
+    public static <T> Integer getClosingId(Class<T> t) {
         return mapCounter.get(t);
     }
 
-    public <T> Integer setClosingId(Class<T> t, int id){
+    public static <T> Integer setClosingId(Class<T> t, int id){
         return mapCounter.put(t, id);
     }
 }
