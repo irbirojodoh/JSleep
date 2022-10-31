@@ -44,7 +44,6 @@ public class Serializable {
 
     }
 
-
     public static <T> Integer getClosingId(Class<T> t) {
         return mapCounter.get(t);
     }

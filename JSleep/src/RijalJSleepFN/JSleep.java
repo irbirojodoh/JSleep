@@ -1,13 +1,23 @@
 package RijalJSleepFN;
 
-//import java.util.*;
-import java.sql.*;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.util.List;
+import java.io.FileReader;
+import java.io.IOException;
+import com.google.gson.*;
+
+
 
 
 //MODUL 1 PERKENALAN
 public class JSleep {
 
+    class Country{
+        public String name;
+        public int population;
+        public List<String> listOfStates;
+    }
 
     public static Room createRoom(){
         Price price = new Price(100000.0,5);
@@ -17,12 +27,18 @@ public class JSleep {
     /** Testing projec*/
     public static void main(String[] args){
 
-        System.out.println("HELLO FROM INTELIJ");
-
-        ArrayList<Room> RoomSerialized = new ArrayList<Room>();
-        for (int i = 0; i < 10; i++) {
-            RoomSerialized.add(i, JSleep.createRoom());
-            System.out.println(RoomSerialized.get(i).toString());
+        String filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/JSleep/src/city.json";
+        Gson gson = new Gson();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filepath));
+            Country input = gson.fromJson(br, Country.class);
+            System.out.println("name: " + input.name);
+            System.out.println("population: " + input.population);
+            System.out.println("states: ");
+            input.listOfStates.forEach(states -> System.out.println(states));;
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
         //testing commit push dari intelij
         /*
