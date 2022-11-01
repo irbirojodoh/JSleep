@@ -33,10 +33,22 @@ public class JSleep {
         System.out.println(testRegex.validate());
         System.out.println(testRegexFail.validate());
 
+
+        try
+        {
+            String filepath= "src/json/randomRoomList.json";
+            JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+            List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
+            filterTableRoom.forEach(room -> System.out.println(room.toString()));
+        }
+        catch (Throwable t){
+            t.printStackTrace();
+        }
+
     }
     public static List<Room> filterByCity(List<Room> rooms, String city, int page, int pagesize){
-        List<Room> filtered = new ArrayList<Room>();
-        return Algorithm.paginate(rooms, page, pagesize,  i -> i.city == City.valueOf(city.toUpperCase()));
+        //List<Room> filtered = new ArrayList<Room>();
+        return Algorithm.<Room>paginate(rooms, page, pagesize,  i -> i.city == City.valueOf(city.toUpperCase()));
     }
 
     public static List<Room> filterByPrice(List<Room> rooms, double max, double min){
