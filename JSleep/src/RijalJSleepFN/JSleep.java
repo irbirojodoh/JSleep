@@ -2,7 +2,7 @@ package RijalJSleepFN;
 
 import java.util.ArrayList;
 import java.io.BufferedReader;
-import java.util.List;
+import java.util.*;
 import java.io.FileReader;
 import java.io.IOException;
 import com.google.gson.*;
@@ -21,12 +21,37 @@ public class JSleep {
 
     public static Room createRoom(){
         Price price = new Price(100000.0,5);
-        Room room = new Room(12,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan", BedType.KING);
+        Room room = new Room(12,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
        return room;
     }
     /** Testing projec*/
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
+
+        Renter testRegex = new Renter("Netlab_", "081234567890", "Jl Margonda Raya");
+        Renter testRegexFail = new Renter("netlab", "081", "Jalan");
+        System.out.println(testRegex.validate());
+        System.out.println(testRegexFail.validate());
+
+    }
+    public static List<Room> filterByCity(List<Room> rooms, String city, int page, int pagesize){
+        List<Room> filtered = new ArrayList<Room>();
+        return Algorithm.paginate(rooms, page, pagesize,  i -> i.city == City.valueOf(city.toUpperCase()));
+    }
+
+    public static List<Room> filterByPrice(List<Room> rooms, double max, double min){
+       // List<Room> filtered = new ArrayList<Room>();
+        return Algorithm.<Room>collect(rooms, i -> i.price.price >= min && i.price.price <= max);
+    }
+
+    public static List<Room> filterByAccountId(List<Room> rooms, int accountId, int page, int pagesize){
+
+        return Algorithm.paginate(rooms, page, pagesize,  i -> i.accountId == accountId);
+    }
+
+
+
+/*
         String filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/JSleep/src/city.json";
         Gson gson = new Gson();
         try {
@@ -40,6 +65,8 @@ public class JSleep {
         catch (IOException e){
             e.printStackTrace();
         }
+        */
+
         //testing commit push dari intelij
         /*
         Room RoomA = JSleep.createRoom();
@@ -81,7 +108,7 @@ public class JSleep {
         System.out.println("Testing getAdminFeePercentage   : " + getAdminFeePercentage()*100+"%");
         System.out.println("Testing getAdminFee             : Rp" + getAdminFee(hargaAwal));
         System.out.println("Testing getTotalPrice           : Rp" + getTotalPrice(hargaAwal, nights)); */
-    }
+
 
 
 

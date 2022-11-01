@@ -3,52 +3,37 @@ package RijalJSleepFN;
 import java.util.HashMap;
 
 public class Serializable {
-
     public final int id;
-    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
-    /** */
- protected Serializable(){
-    // mapCounter = new HashMap<>();
-    Integer count = mapCounter.get(getClass());
-    if (count == null){
-        count = 0;
-    }else{
-        count++;
-    }
-  mapCounter.put(this.getClass(), count);
-    this.id = count;
- }
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class<?>, Integer>();
 
-    public boolean equals(Object obj){
-        if (obj instanceof Serializable && ((Serializable)obj).id == this.id){
-            return true ;
+    protected Serializable() {
+        Integer counter = mapCounter.get(getClass());
+        if (counter == null){
+            counter =  0;
         }
-        return false;
-    }
-
-   public boolean equals (Serializable o){
-        if (o.id == this.id){
-            return true ;
+        else{
+            counter +=1;
         }
-        return false;
+        mapCounter.put(getClass(), counter);
+        this.id = counter;
     }
 
-    public int compareTo (Serializable ser){
-        if (ser.id > this.id){
-            return 1;
-        }else if(ser.id == this.id) {
-            return 0;
-        }else {
-            return -1;
-        }
+    public static <T extends Serializable> Integer setClosingId(Class<T> clazz, int id) { return mapCounter.put(clazz, id); }
 
+    public static <T extends Serializable> Integer getClosingId(Class<T> clazz) { return mapCounter.get(clazz); }
+
+    public boolean equals(Object other)
+    {
+        return other instanceof Serializable && ((Serializable) other).id == id;
     }
 
-    public static <T> Integer getClosingId(Class<T> t) {
-        return mapCounter.get(t);
+    public boolean equals(Serializable other)
+    {
+        return other.id == id;
     }
 
-    public static <T> Integer setClosingId(Class<T> t, int id){
-        return mapCounter.put(t, id);
+    public int compareTo(Serializable other)
+    {
+        return Integer.compare(this.id, other.id);
     }
 }

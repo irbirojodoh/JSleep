@@ -1,7 +1,7 @@
 package RijalJSleepFN;
 
 
-public class Account extends Serializable implements FileParser  {
+public class Account extends Serializable    {
     public String name;
     public String email;
     public String password;
@@ -18,12 +18,12 @@ public class Account extends Serializable implements FileParser  {
         return "email=" + this.email + ", name=" + this.name + ", password=" + this.password ;
     }
 
-    @Override
+    //@Override
     public boolean read(String xxx){
         return true;
     }
 
-    @Override
+    //@Override
     public Object write(){
         return null;
     }
