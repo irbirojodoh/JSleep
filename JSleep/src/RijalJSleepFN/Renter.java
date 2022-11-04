@@ -11,7 +11,7 @@ public class Renter extends Serializable {
     // regex for username minimum 4 character maximum 20 character
 
 
-    public static final String REGEX_NAME = "^[A-Z][a-z0-9_]{4,20}$";
+    public static final String REGEX_NAME = "^[A-Z][a-zA-Z0-9_]{4,20}$";
     public static final String REGEX_PHONE = "^[0-9]{9,12}$";
    
    
@@ -41,6 +41,6 @@ public Renter(String username, String phoneNumber, String address){
      */
 
     public boolean validate(){
-        return username.matches(REGEX_NAME) && phoneNumber.matches(REGEX_PHONE);
+        return this.username.matches(REGEX_NAME) && this.phoneNumber.matches(REGEX_PHONE);
     }
 }

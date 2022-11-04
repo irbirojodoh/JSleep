@@ -13,25 +13,15 @@ public class Room extends Serializable   {
     public int accountId;
     public ArrayList<Date> booked;
     /** */
-    public Room(int accountId, String name, int size, Price price, Facility facility, City city, String address){
-        //super(id);
+    public Room(int accountId, String name, int size, Price price, Facility facility, City city, String address) {
+        this.accountId = accountId;
         this.name = name;
         this.size = size;
         this.price = price;
         this.facility = facility;
         this.city = city;
         this.address = address;
-       // this.bedType = bedType;
-        this.booked = new ArrayList<Date>();
-      //  super(id);
-        this.name = name;
-        this.size = size;
-        this.price = price;
-        this.facility = facility;
-        this.city = city;
-        this.address = address;
-        this.bedType = bedType;
-        this.booked = new ArrayList<Date>();
+        this.booked = new ArrayList<>();
     }
 
     public String toString() {

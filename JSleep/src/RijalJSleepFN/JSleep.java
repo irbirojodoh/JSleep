@@ -4,63 +4,79 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.util.*;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.*;
 
-
+import static RijalJSleepFN.JsonTable.writeJson;
 
 
 //MODUL 1 PERKENALAN
 public class JSleep {
 
-    class Country{
+    class Country {
         public String name;
         public int population;
         public List<String> listOfStates;
     }
 
-    public static Room createRoom(){
-        Price price = new Price(100000.0,5);
-        Room room = new Room(12,"Restaurant",30,price,Facility.AC,City.JAKARTA,"Jl.Medan");
-       return room;
+    public static Room createRoom() {
+        Price price = new Price(100000.0, 5);
+        Room room = new Room(12, "Restaurant", 30, price, Facility.AC, City.JAKARTA, "Jl.Medan");
+        return room;
     }
-    /** Testing projec*/
+
+    /**
+     * Testing projec
+     */
     public static void main(String[] args) {
 
+        for (int i = 0; i < 10; i++) {
+            ThreadingObject thread = new ThreadingObject("Thread " + i);
+            thread.start();
+        }
 
-        Renter testRegex = new Renter("Netlab_", "081234567890", "Jl Margonda Raya");
-        Renter testRegexFail = new Renter("netlab", "081", "Jalan");
+
+        Account testRegex = new Account(69, "rijal", "ibrahimrijal@ui.ac.id", "kudaLi@r69");
+        Account testRegexFail = new Account(89, "bangFaten", "faten.gntg@ui.com", "1223343232");
         System.out.println(testRegex.validate());
         System.out.println(testRegexFail.validate());
 
 
-        try
-        {
-            String filepath= "src/json/randomRoomList.json";
-            JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-            List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
-            filterTableRoom.forEach(room -> System.out.println(room.toString()));
-        }
-        catch (Throwable t){
+
+
+        try {
+            String filepath = "src/json/";
+            //JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath );
+            FileWriter jsonWriter = new FileWriter(filepath + "account.json");
+            jsonWriter.close();
+            JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath + "account.json");
+            tableAccount.writeJson(testRegex, filepath + "account.json");
+            tableAccount.writeJson(testRegexFail, filepath + "account.json");
+        } catch (Throwable t) {
             t.printStackTrace();
         }
 
     }
-    public static List<Room> filterByCity(List<Room> rooms, String city, int page, int pagesize){
-        //List<Room> filtered = new ArrayList<Room>();
-        return Algorithm.<Room>paginate(rooms, page, pagesize,  i -> i.city == City.valueOf(city.toUpperCase()));
+
+    public static List<Room> filterByCity(List<Room> list, String city,int page,int pagesize){
+        List<Room> filtered = new ArrayList<Room>();
+        filtered = Algorithm.<Room>paginate(list,page,pagesize,a -> a.city == City.valueOf(city.toUpperCase()));
+        return filtered;
     }
 
-    public static List<Room> filterByPrice(List<Room> rooms, double max, double min){
-       // List<Room> filtered = new ArrayList<Room>();
-        return Algorithm.<Room>collect(rooms, i -> i.price.price >= min && i.price.price <= max);
+    public static List<Room> filterByPrice(List<Room> list, double min,double max){
+        List<Room> filtered = new ArrayList<Room>();
+        filtered = Algorithm.<Room>collect(list,i -> ((i.price.price >= min) && (i.price.price <= max)));
+        return filtered;
     }
 
-    public static List<Room> filterByAccountId(List<Room> rooms, int accountId, int page, int pagesize){
-
-        return Algorithm.paginate(rooms, page, pagesize,  i -> i.accountId == accountId);
+    public static List<Room> filterByAccountId(List<Room> list,int accountId,int page,int pagesize){
+        List<Room> filtered = new ArrayList<Room>();
+        filtered = Algorithm.<Room>paginate(list,page,pagesize,i -> i.accountId == accountId);
+        return filtered;
     }
-
+}
 
 
 /*
@@ -96,7 +112,7 @@ public class JSleep {
         Date end3 = Date.valueOf("2022-8-20");
         System.out.println(Payment.makeBooking(start3, end3,RoomB));
         */
-    //System.out.println(RoomA.booked);
+        //System.out.println(RoomA.booked);
 
 
         /*bekas kemaren 
@@ -122,11 +138,7 @@ public class JSleep {
         System.out.println("Testing getTotalPrice           : Rp" + getTotalPrice(hargaAwal, nights)); */
 
 
-
-
-
-
-    //Bekas kemaren
+        //Bekas kemaren
    /*  static int getHotelId(){
         return 0;
     }
@@ -172,4 +184,6 @@ public class JSleep {
         }
         return (float) sum / numbers.length;
     }*/
-}
+
+
+
