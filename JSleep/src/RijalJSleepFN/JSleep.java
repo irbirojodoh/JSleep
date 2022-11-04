@@ -48,11 +48,12 @@ public class JSleep {
         try {
             String filepath = "src/json/";
             //JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath );
-            FileWriter jsonWriter = new FileWriter(filepath + "account.json");
-            jsonWriter.close();
+            //FileWriter jsonWriter = new FileWriter(filepath + "account.json");
+            //jsonWriter.close();
             JsonTable<Account> tableAccount = new JsonTable<Account>(Account.class, filepath + "account.json");
-            tableAccount.writeJson(testRegex, filepath + "account.json");
-            tableAccount.writeJson(testRegexFail, filepath + "account.json");
+            tableAccount.add(testRegex);
+            tableAccount.writeJson();
+
         } catch (Throwable t) {
             t.printStackTrace();
         }
