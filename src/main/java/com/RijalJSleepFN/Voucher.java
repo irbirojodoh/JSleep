@@ -1,9 +1,9 @@
 package com.RijalJSleepFN;
 
 
+import com.RijalJSleepFN.dbjson.Serializable;
 
-
-public class Voucher extends Serializable   {
+public class Voucher extends Serializable {
     
 
     public Type type;

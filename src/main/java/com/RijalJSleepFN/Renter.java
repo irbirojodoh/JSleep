@@ -1,6 +1,6 @@
 package com.RijalJSleepFN;
 
-import java.util.*;
+import com.RijalJSleepFN.dbjson.Serializable;
 
 public class Renter extends Serializable {
     

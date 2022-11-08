@@ -1,5 +1,7 @@
 package com.RijalJSleepFN;
 
+import com.RijalJSleepFN.dbjson.Serializable;
+
 import java.util.*;
 
 public class Invoice extends Serializable {

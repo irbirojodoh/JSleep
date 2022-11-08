@@ -1,4 +1,4 @@
-package com.RijalJSleepFN;
+package com.RijalJSleepFN.dbjson;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

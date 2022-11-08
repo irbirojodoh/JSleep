@@ -1,10 +1,16 @@
 package com.RijalJSleepFN;
 
 
-public class Account extends Serializable    {
+import com.RijalJSleepFN.dbjson.Serializable;
+
+public class Account extends Serializable {
     public String name;
     public String email;
+
+    public Double balance;
     public String password;
+
+    public Renter renter;
 
     public static final String REGEX_PASSWORD = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
     public static final String REGEX_EMAIL = "^[a-zA_Z0-9]+@[a-zA-Z.]+.[a-zA-Z.]+[a-zA-Z]$";

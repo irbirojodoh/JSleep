@@ -1,8 +1,8 @@
-package com.RijalJSleepFN;
+package com.RijalJSleepFN.dbjson;
 
 import java.util.HashMap;
 
-public class Serializable {
+public class Serializable implements Comparable<Serializable> {
     public final int id;
     private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class<?>, Integer>();
 

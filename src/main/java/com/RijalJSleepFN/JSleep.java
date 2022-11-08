@@ -1,19 +1,11 @@
 package com.RijalJSleepFN;
 
-import java.util.ArrayList;
-import java.io.BufferedReader;
 import java.util.*;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import com.google.gson.*;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import static com.RijalJSleepFN.JsonTable.writeJson;
 
-
-//MODUL 1 PERKENALAN
 /**
  * JSleep is the main method class
  * @author Ibrahim Rijal

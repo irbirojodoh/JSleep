@@ -1,7 +1,9 @@
 package com.RijalJSleepFN;
 
+import com.RijalJSleepFN.dbjson.Serializable;
+
 import java.util.*;
-public class Room extends Serializable   {
+public class Room extends Serializable {
     public int size;
     public String name;
     public String address;
@@ -24,11 +26,22 @@ public class Room extends Serializable   {
         this.booked = new ArrayList<>();
     }
 
+    @Override
     public String toString() {
-        return "id = " + this.id + "address=" + this.address + ", bedType=" + this.bedType + ", city=" + this.city + ", facility=" + this.facility
-                + ", name=" + this.name + ", price=" + this.price + ", size=" + this.size ;
+        return "Room{" +
+                "size=" + size +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", facility=" + facility +
+                ", price=" + price +
+                ", bedType=" + bedType +
+                ", city=" + city +
+                ", accountId=" + accountId +
+                ", booked=" + booked +
+                '}';
     }
-   // @Override
+
+    // @Override
     public boolean read(String xxx){
         return true;
     }
