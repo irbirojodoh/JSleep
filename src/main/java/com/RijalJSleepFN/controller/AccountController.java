@@ -51,12 +51,13 @@ public class AccountController implements BasicGetController<Account>
 
     }
 
+    @PostMapping("/login")
     Account login(@RequestParam String email, @RequestParam String password)
     {
         return Algorithm.<Account>find(accountTable, pred -> pred.email.equals(email) && pred.password.equals(password));
     }
 
-
+    @PostMapping("/registerRenter")
     Renter registerRenter(@PathVariable int id, @RequestParam String name, @RequestParam String email, @RequestParam String password)
     {
         Account account = Algorithm.<Account>find(getJsonTable(), acc -> id == acc.id);
@@ -67,6 +68,7 @@ public class AccountController implements BasicGetController<Account>
         return null;
     }
 
+    @PostMapping("/{id}/topup")
     boolean topUp(@PathVariable int id, @RequestParam int amount)
     {
         Account account = Algorithm.<Account>find(getJsonTable(), acc -> id == acc.id);
