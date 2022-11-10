@@ -7,9 +7,12 @@ import com.RijalJSleepFN.Renter;
 import com.RijalJSleepFN.dbjson.JsonAutowired;
 import com.RijalJSleepFN.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.security.*;
 
 // TODO sesuaikan dengan package Anda: package com.netlabJSleepGS.controller;
 
@@ -44,8 +47,32 @@ public class AccountController implements BasicGetController<Account>
         Account findAccount = Algorithm.<Account> find(getJsonTable(),pred -> pred.email.equals(email));
 
         if ( matchEmail && matchFoundPassword && !name.isBlank() && findAccount == null){
+            try {
 
-            return new Account(name, email, password);
+                // Static getInstance method is called with hashing MD5
+                MessageDigest md = MessageDigest.getInstance("MD5");
+
+                // digest() method is called to calculate message digest
+                // of an input digest() return array of byte
+                byte[] messageDigest = md.digest(password.getBytes());
+
+                // Convert byte array into signum representation
+                BigInteger no = new BigInteger(1, messageDigest);
+
+                // Convert message digest into hex value
+                String hashtext = no.toString(16);
+                while (hashtext.length() < 32) {
+                    hashtext = "0" + hashtext;
+                }
+                Account account = new Account(name, email, hashtext);
+                accountTable.add(account);
+                return account;
+            }
+
+            // For specifying wrong message digest algorithms
+            catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
         }
         return null;
 
@@ -54,16 +81,51 @@ public class AccountController implements BasicGetController<Account>
     @PostMapping("/login")
     Account login(@RequestParam String email, @RequestParam String password)
     {
-        return Algorithm.<Account>find(accountTable, pred -> pred.email.equals(email) && pred.password.equals(password));
+        try {
+
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest
+            // of an input digest() return array of byte
+            byte[] messageDigest = md.digest(password.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            String finalHashtext = hashtext;
+            Account findAccount = Algorithm.<Account> find(getJsonTable(),pred -> pred.email.equals(email) && pred.password.equals(finalHashtext));
+           // Account findAccount = Algorithm.<Account> find(getJsonTable(),pred -> pred.email.equals(email));
+
+            //final String generatedPassword = hashPassword(password);
+
+            if (findAccount != null && finalHashtext.equals(findAccount.password)){
+                return findAccount;
+            }else{
+                return null;
+            }
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    @PostMapping("/registerRenter")
-    Renter registerRenter(@PathVariable int id, @RequestParam String name, @RequestParam String email, @RequestParam String password)
-    {
-        Account account = Algorithm.<Account>find(getJsonTable(), acc -> id == acc.id);
-
-        if (account != null){
-            account.renter = new Renter(name, email, password);
+    @PostMapping("{id}/registerRenter")
+    public Renter registerRenter(@PathVariable int id, @RequestParam String username, @RequestParam String address, @RequestParam String phoneNumber){
+        for(Account account : accountTable){
+            if(account.id == id){
+                Renter renter = new Renter(username, address, phoneNumber);
+                account.renter = renter;
+                return renter;
+            }
         }
         return null;
     }

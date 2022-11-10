@@ -8,7 +8,7 @@ public class Invoice extends Serializable {
     
     public int buyerId;
     public int renterId;
-    public Date time;
+    //public Date time;
     public RoomRating rating;
     public PaymentStatus status;
 
@@ -24,7 +24,7 @@ public class Invoice extends Serializable {
         Date time = new Date();
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = time;
+      //  this.time = time;
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
@@ -33,11 +33,11 @@ public class Invoice extends Serializable {
         Date time = new Date();
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = time;
+       // this.time = time;
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
     public String print(){
-        return "Var buyerID, renterID, time: " + buyerId + ", " + renterId + ", " + time;
+        return "Var buyerID, renterID, rating, status: " + buyerId + ", " + renterId + ", " + rating + ", " + status;
     }
 }

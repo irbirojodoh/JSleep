@@ -5,16 +5,16 @@ import java.util.Date;
 import java.text.*;
 
 public class Payment extends Invoice {
-    public Date to;
-    public Date from;
+//    public Date to;
+//    public Date from;
     private int roomId;
     
     /** constructor untuk melakukan pengisian thd var instance */
     public Payment(int id, int buyerId, int renterId, int roomId, Date from, Date to){
         super(id, buyerId, renterId);
         //Calendar time = Calendar.getInstance();
-        this.from = new Date();
-        this.to = new Date();
+     //   this.from = new Date();
+        // this.to = new Date();
         //this.to.add(Calendar.DATE, 2);
         
         this.roomId = roomId;
@@ -24,24 +24,24 @@ public class Payment extends Invoice {
 
     public Payment(int id, Account buyer, Renter renter, int roomId, Date from, Date to){
         super(id, buyer.id, renter.id);
-        this.from = from;
-        this.to = to;
+        //this.from = from;
+        //this.to = to;
         //this.to.add(Calendar.DATE, 2);
         this.roomId = roomId;
     }
 
     public String print(){
-        return "Var to, from, roomId: "+ to + ", "+ from+ ", "+ roomId;
+        return "Var, roomId: " + ","+ roomId;
     }
     public int getRoomId(){
         return roomId;
     }
 
-    public String getTime(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
-        String currTime = SDFormat.format(time.getTime());
-        return currTime;
-    }
+//    public String getTime(){
+//        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
+//        String currTime = SDFormat.format(time.getTime());
+//        return currTime;
+//    }
 
     // public String getDuration(){
     //     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");

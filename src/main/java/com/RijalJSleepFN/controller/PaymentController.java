@@ -30,6 +30,8 @@ public class PaymentController implements BasicGetController<Payment> {
 
     @PostMapping("/create")
     public Payment create(@RequestParam int buyerId,@RequestParam int  renterId,@RequestParam int  roomId,@RequestParam  String from,@RequestParam  String to){
+
+
         return null;
     }
 
