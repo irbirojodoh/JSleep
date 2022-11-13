@@ -5,8 +5,8 @@ import java.util.Date;
 import java.text.*;
 
 public class Payment extends Invoice {
-//    public Date to;
-//    public Date from;
+    public Date to;
+    public Date from;
     private int roomId;
     
     /** constructor untuk melakukan pengisian thd var instance */
