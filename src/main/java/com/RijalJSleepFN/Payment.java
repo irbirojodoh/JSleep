@@ -16,7 +16,8 @@ public class Payment extends Invoice {
      //   this.from = new Date();
         // this.to = new Date();
         //this.to.add(Calendar.DATE, 2);
-        
+        this.to = to;
+        this.from = from;
         this.roomId = roomId;
     }
 
@@ -27,6 +28,8 @@ public class Payment extends Invoice {
         //this.from = from;
         //this.to = to;
         //this.to.add(Calendar.DATE, 2);
+        this.to = to;
+        this.from = from;
         this.roomId = roomId;
     }
 

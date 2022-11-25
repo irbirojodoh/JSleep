@@ -19,7 +19,7 @@ public class Renter extends Serializable {
         this.username = username;
     }
 */
-public Renter(String username, String phoneNumber, String address){
+public Renter(String username, String address, String phoneNumber){
 
     this.username = username;
     this.phoneNumber = phoneNumber;

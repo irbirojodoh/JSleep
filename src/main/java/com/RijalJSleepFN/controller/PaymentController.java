@@ -33,22 +33,22 @@ public class PaymentController implements BasicGetController<Payment> {
 
     @PostMapping("/create")
     public Payment create(@RequestParam int buyerId, @RequestParam int renterId, @RequestParam int roomId, @RequestParam String from, @RequestParam String to) throws ParseException {
-        Account acc = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId && pred.id != buyerId);
+        Account acc = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId && pred.id == buyerId);
         Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == roomId && pred.accountId == roomId);
 
-        Price price = new Price(room.price.price);
+       // Price price = new Price(room.price.price);
+        double price = room.price.price;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fromDate = sdf.parse(from);
         Date toDate = sdf.parse(to);
 
-        if(acc.balance >= price.price && acc != null && room != null  ){
+        if(acc.balance >= price && acc != null && room != null  ){
             Payment payment = new Payment(acc.id, buyerId, renterId, roomId, fromDate, toDate);
-            acc.balance -= price.price;
+            acc.balance -= price;
             payment.status=Invoice.PaymentStatus.WAITING;
             payment.makeBooking(fromDate, toDate, room);
-
-
+            paymentTable.add(payment);
             return payment;
         }
         return null;

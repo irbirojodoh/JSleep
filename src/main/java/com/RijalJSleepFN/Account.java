@@ -7,7 +7,7 @@ public class Account extends Serializable {
     public String name;
     public String email;
 
-    public Double balance;
+    public double balance = 0;
     public String password;
 
     public Renter renter;

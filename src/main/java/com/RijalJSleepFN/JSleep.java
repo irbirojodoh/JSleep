@@ -21,11 +21,11 @@ public class JSleep {
         public List<String> listOfStates;
     }
 
-    public static Room createRoom() {
-        Price price = new Price(100000.0, 5);
-        Room room = new Room(12, "Restaurant", 30, price, Facility.AC, City.JAKARTA, "Jl.Medan");
-        return room;
-    }
+//    public static Room createRoom() {
+//        Price price = new Price(100000.0, 5);
+//        Room room = new Room(12, "Restaurant", 30, price, Facility.AC, City.JAKARTA, "Jl.Medan");
+//        return room;
+//    }
 
 
 
