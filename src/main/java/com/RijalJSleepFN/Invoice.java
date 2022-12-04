@@ -4,40 +4,43 @@ import com.RijalJSleepFN.dbjson.Serializable;
 
 import java.util.*;
 
-public class Invoice extends Serializable {
-    
+public class Invoice extends Serializable{
     public int buyerId;
     public int renterId;
     //public Date time;
-    public RoomRating rating;
-    public PaymentStatus status;
+    public PaymentStatus status = PaymentStatus.WAITING;
+    public RoomRating rating = RoomRating.NONE;
 
-    public enum RoomRating{
-        NONE,BAD,NEUTRAL,GOOD
+    public enum PaymentStatus
+    {
+        FAILED, WAITING, SUCCESS
     }
-    public enum PaymentStatus{
-        FAILED,WAITING,SUCCESS
+
+    public enum RoomRating
+    {
+        NONE, BAD, NEUTRAL, GOOD
     }
-    /** */
-    protected Invoice(int id, int buyerId, int renterId){
+
+    /**protected modifier hanya bisa diakses dari class dan subclass itu sendiri*/
+    protected Invoice(int buyerId,int renterId){
+
+        this.buyerId=buyerId;
+        this.renterId=renterId;
+        //this.time=new Date();
+        //this.buyerID=buyerID;
+    }
+    /**contoh polymorphism overloading*/
+    public Invoice( Account buyer, Renter renter){
         //super(id);
-        Date time = new Date();
-        this.buyerId = buyerId;
-        this.renterId = renterId;
-      //  this.time = time;
-        this.rating = RoomRating.NONE;
-        this.status = PaymentStatus.WAITING;
+        this.buyerId=getClosingId(buyer.getClass());
+        this.renterId=getClosingId(renter.getClass());
+        //this.time=new Date();
     }
-    public Invoice(int id, Account buyer, Renter renter){
-        //super(id);
-        Date time = new Date();
-        this.buyerId = buyer.id;
-        this.renterId = renter.id;
-       // this.time = time;
-        this.rating = RoomRating.NONE;
-        this.status = PaymentStatus.WAITING;
-    }
+
     public String print(){
-        return "Var buyerID, renterID, rating, status: " + buyerId + ", " + renterId + ", " + rating + ", " + status;
+        //String buyID = (String)buyerID;
+        String space = " ";
+        String tmp = "Buyer ID :" + this.buyerId +"\nRenter ID :" +this.renterId+ "\nTime :" ;
+        return tmp;
     }
 }

@@ -32,26 +32,56 @@ public class PaymentController implements BasicGetController<Payment> {
     }
 
     @PostMapping("/create")
-    public Payment create(@RequestParam int buyerId, @RequestParam int renterId, @RequestParam int roomId, @RequestParam String from, @RequestParam String to) throws ParseException {
-        Account acc = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == buyerId && pred.id == buyerId);
-        Room room = Algorithm.<Room>find(RoomController.roomTable, pred -> pred.id == roomId && pred.accountId == roomId);
-
-       // Price price = new Price(room.price.price);
-        double price = room.price.price;
-
+    public Payment create(
+            @RequestParam int buyerId,@RequestParam int renterId,
+            @RequestParam int roomId, @RequestParam String from, @RequestParam String to
+    ){
+        Account cari = Algorithm.<Account>find(AccountController.accountTable,pred->pred.id==buyerId);
+        Room cariruang = Algorithm.<Room>find(RoomController.roomTable, pred->pred.id==roomId);
+        double hargaKamar = cariruang.price.price;
+        System.out.println(from);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fromDate = sdf.parse(from);
-        Date toDate = sdf.parse(to);
-
-        if(acc.balance >= price && acc != null && room != null  ){
-            Payment payment = new Payment(acc.id, buyerId, renterId, roomId, fromDate, toDate);
-            acc.balance -= price;
-            payment.status=Invoice.PaymentStatus.WAITING;
-            payment.makeBooking(fromDate, toDate, room);
-            paymentTable.add(payment);
-            return payment;
+        Date fromtgl=null;
+        Date totgl=null;
+        try{
+            fromtgl = sdf.parse(from);
+            totgl = sdf.parse(to);
+            System.out.println("date  "+totgl);
+            // if(cari.balance>=hargaKamar&&Payment.availability(fromtgl, totgl, cariruang)){
+            //     Payment baru = new Payment(buyerId,renterId,roomId,fromtgl,totgl);
+            //     baru.status=Invoice.PaymentStatus.WAITING;
+            //     Payment.makeBooking(fromtgl, totgl, cariruang);
+            //     System.out.println("response backend: "+baru.toString());
+            //     paymentTable.add(baru);
+            //     return baru;
+            // }
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        System.out.println(cari.toString());
+        if(cari.balance>=hargaKamar&&Payment.availability(fromtgl, totgl, cariruang)){
+            System.out.println(cari.toString());
+            Payment baru = new Payment(buyerId,renterId,roomId,fromtgl,totgl);
+            baru.status=Invoice.PaymentStatus.WAITING;
+            Payment.makeBooking(fromtgl, totgl, cariruang);
+            long diffInMilliseconds = totgl.getTime() - fromtgl.getTime();
+            long diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+            cari.balance-=hargaKamar * (double) diffInDays;
+            //apa ngurangin jumlahnya disini?
+            System.out.println("response backend: "+baru.toString());
+            paymentTable.add(baru);
+            return baru;
+        }
+        if(cari.balance<hargaKamar){
+            System.out.println("gapunya duit ya");
+        }
+        if(Payment.availability(fromtgl, totgl, cariruang)){
+            System.out.println("kamar sudah di booking");
         }
         return null;
+        //return new Payment(buyerId,renterId,roomId,fromtgl,totgl);
+
     }
     @PostMapping("/{id}/accept")
     public boolean accept(@RequestParam int id) {

@@ -4,62 +4,60 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.*;
 
-public class Payment extends Invoice {
+public class Payment extends Invoice{
     public Date to;
     public Date from;
     private int roomId;
-    
-    /** constructor untuk melakukan pengisian thd var instance */
-    public Payment(int id, int buyerId, int renterId, int roomId, Date from, Date to){
-        super(id, buyerId, renterId);
-        //Calendar time = Calendar.getInstance();
-     //   this.from = new Date();
-        // this.to = new Date();
-        //this.to.add(Calendar.DATE, 2);
-        this.to = to;
-        this.from = from;
-        this.roomId = roomId;
+
+    /**overloading constructor*/
+    public Payment(Account buyer, Renter renter, int roomId,Date from,Date to){
+        super(buyer,renter);
+        this.roomId=roomId;
+        //SimpleDateFormat format =
+        this.from=from;
+        this.to=to;
+        //to.add(Calendar.DATE,2);
     }
 
-
-
-    public Payment(int id, Account buyer, Renter renter, int roomId, Date from, Date to){
-        super(id, buyer.id, renter.id);
-        //this.from = from;
-        //this.to = to;
-        //this.to.add(Calendar.DATE, 2);
-        this.to = to;
-        this.from = from;
-        this.roomId = roomId;
+    public Payment(int buyerId, int renterId, int roomId,Date from, Date to){
+        super(buyerId,renterId);
+        this.roomId=roomId;
+        this.from= from;
+        this.to=to;
+        //to.add(Calendar.DATE,2);
     }
-
+    /**method overriding dengan parent*/
     public String print(){
-        return "Var, roomId: " + ","+ roomId;
+        String constfrom = "From :";
+        SimpleDateFormat arrange = new SimpleDateFormat(" dd/mm/yyyy");
+        String formattedTo = arrange.format(to.getTime());
+        String formattedFrom = arrange.format(from.getTime());
+        //String space = "  ";
+        String tmp = constfrom + this.from +"\nFrom: "+ formattedFrom + "\nTo:" + formattedTo+ this.roomId;
+        return tmp;
     }
+
+    /** getter*/
     public int getRoomId(){
-        return roomId;
+        return this.roomId;
     }
 
-//    public String getTime(){
-//        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date' = dd MMMM yyyy");
-//        String currTime = SDFormat.format(time.getTime());
-//        return currTime;
-//    }
-
-    // public String getDuration(){
-    //     SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-    //     return sdf.format(this.from.getTime())+" - "+sdf.format(this.to.getTime());
-    
+    // public String getTime(){
+    //     SimpleDateFormat arrange = new SimpleDateFormat(" dd MMMM yyyy ");
+    //    String currTime = arrange.format(time.getTime());
+    //    return currTime;
     // }
-    public static boolean availability(Date from,Date to,Room room){
+
+    public static boolean availability(Date from, Date to, Room room){
+        //int y;
         Calendar start = Calendar.getInstance();
-        start.setTime(from);
         Calendar end = Calendar.getInstance();
+        start.setTime(from);
         end.setTime(to);
-        if(start.after(end) || start.equals(end)){
+        if(start.after(end)||start.equals(end)){
             return false;
         }
-        for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+        for(Date date= start.getTime();start.before(end);start.add(Calendar.DATE,1),date=start.getTime()) {
             if(room.booked.contains(date)){
                 return false;
             }
@@ -67,14 +65,13 @@ public class Payment extends Invoice {
         return true;
     }
 
-
-    public static boolean makeBooking(Date from,Date to,Room room){
+    public static boolean makeBooking(Date from, Date to, Room room){
         if(availability(from, to, room)){
             Calendar start = Calendar.getInstance();
-            start.setTime(from);
             Calendar end = Calendar.getInstance();
+            start.setTime(from);
             end.setTime(to);
-            for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+            for(Date date= start.getTime();start.before(end);start.add(Calendar.DATE,1),date=start.getTime()) {
                 room.booked.add(date);
             }
             return true;
@@ -83,3 +80,5 @@ public class Payment extends Invoice {
     }
 
 }
+
+
