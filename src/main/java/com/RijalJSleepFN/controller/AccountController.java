@@ -29,9 +29,11 @@ public class AccountController implements BasicGetController<Account>
     public static final Pattern REGEX_PASSWORD_PATTERN = Pattern.compile(REGEX_PASSWORD);
     public static final Pattern REGEX_EMAIL_PATTERN = Pattern.compile(REGEX_EMAIL);
 
-    @JsonAutowired
-   (value = Account.class, filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/src/json/account.json") public static JsonTable<Account> accountTable;
+    @JsonAutowired(value = Account.class, filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/src/json/account.json") public static JsonTable<Account> accountTable;
     public JsonTable<Account> getJsonTable(){
+
+
+
         return accountTable;
     }
     @GetMapping
@@ -131,7 +133,7 @@ public class AccountController implements BasicGetController<Account>
     }
 
     @PostMapping("/{id}/topup")
-    boolean topUp(@PathVariable int id, @RequestParam int amount)
+    boolean topUp(@PathVariable int id, @RequestParam double amount)
     {
         Account account = Algorithm.<Account>find(getJsonTable(), acc -> id == acc.id);
         if (account != null){

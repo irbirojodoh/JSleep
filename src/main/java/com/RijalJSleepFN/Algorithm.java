@@ -152,6 +152,15 @@ public class Algorithm {
         return paginate(it, page, pageSize, pred);
     }
 
+    /**
+     Returns a paginated list of elements from the given iterator that match the given predicate.
+     @param iterator The iterator to paginate
+     @param page The page number to return
+     @param pageSize The number of elements to include on each page
+     @param pred The predicate to apply to the elements in the iterator
+     @return A paginated list of matching elements from the iterator
+     */
+
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
         int occurences = 0;
         int startingIdx = page * pageSize;

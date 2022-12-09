@@ -15,15 +15,19 @@ import java.security.*;
 @RequestMapping("/room")
 public class RoomController implements BasicGetController<Room> {
 
-    @JsonAutowired(value = Room.class, filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/src/json/room.json")
+    @JsonAutowired (value = Room.class, filepath = "/Users/rijal/Documents/OOPLOCAL/Praktikum/BlueJ/Praktikum-JSleep/src/json/room.json")
+
     public static JsonTable<Room> roomTable;
 
+    @Override
     public JsonTable<Room> getJsonTable(){
         return roomTable;
     }
+    @GetMapping
+    String index() { return "duhuwdw"; }
 
     @GetMapping("/{id}/renter")
-    List<Room> getRoomByRenter(@PathVariable int id, @PathVariable int page, @PathVariable int pageSize){
+    List<Room> getRoomByRenter(@PathVariable int id, @RequestParam int page, @RequestParam int pageSize){
         return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> pred.accountId == id);
     }
     @PostMapping("/create")
