@@ -111,7 +111,6 @@ public class AccountController implements BasicGetController<Account>
     Account login(@RequestParam String email, @RequestParam String password)
     {
         try {
-
             // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
 
