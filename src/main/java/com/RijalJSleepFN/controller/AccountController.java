@@ -20,6 +20,14 @@ import java.security.*;
 // TODO sesuaikan dengan package Anda: import com.netlabJSleepGS.Account;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ AccountController is a RestController that handles requests and responses for Account resources. It implements the
+ {@link BasicGetController} interface and provides methods for creating and modifying Payment objects.
+ @see Account
+ @see BasicGetController
+ @author Ibrahim Rijal
+ */
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -39,6 +47,15 @@ public class AccountController implements BasicGetController<Account>
     @GetMapping
     String index() { return "account page"; }
 
+
+    /**
+
+     Registers a new user with the given name, email, and password.
+     @param name the user's name
+     @param email the user's email
+     @param password the user's password
+     @return the registered account, or null if the email is already taken or the password does not meet the requirements
+     */
     @PostMapping("/register")
     Account register (@RequestParam String name, @RequestParam String email, @RequestParam String password)
     {
@@ -80,6 +97,16 @@ public class AccountController implements BasicGetController<Account>
 
     }
 
+
+
+    /**
+
+     This method is used to login an account with a given email and password.
+     @param email the email of the account to login.
+     @param password the password of the account to login.
+     @return the account that has been logged in.
+     @throws NoSuchAlgorithmException if the specified algorithm is not available.
+     */
     @PostMapping("/login")
     Account login(@RequestParam String email, @RequestParam String password)
     {
@@ -120,6 +147,18 @@ public class AccountController implements BasicGetController<Account>
 
     }
 
+
+
+
+    /**
+
+     Registers a renter for the specified account ID.
+     @param id the ID of the account to register a renter for
+     @param username the username of the renter
+     @param address the address of the renter
+     @param phoneNumber the phone number of the renter
+     @return the newly created renter, or null if no account was found with the specified ID
+     */
     @PostMapping("{id}/registerRenter")
     public Renter registerRenter(@PathVariable int id, @RequestParam String username, @RequestParam String address, @RequestParam String phoneNumber){
         for(Account account : accountTable){
@@ -132,6 +171,13 @@ public class AccountController implements BasicGetController<Account>
         return null;
     }
 
+
+    /**
+     Adds funds to the specified account ID.
+     @param id the ID of the account to add funds to
+     @param amount the amount of funds to add
+     @return true if the funds were added successfully, false otherwise
+     */
     @PostMapping("/{id}/topup")
     boolean topUp(@PathVariable int id, @RequestParam double amount)
     {

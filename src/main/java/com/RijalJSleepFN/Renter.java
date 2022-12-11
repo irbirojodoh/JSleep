@@ -2,6 +2,12 @@ package com.RijalJSleepFN;
 
 import com.RijalJSleepFN.dbjson.Serializable;
 
+/**
+ * This class represents a renter, who can be associated with a username, phone number, and address.
+ *
+ * @author Ibrahim Rijal
+ * @version 1.0
+ */
 public class Renter extends Serializable {
     
     public  String phoneNumber;
@@ -19,12 +25,19 @@ public class Renter extends Serializable {
         this.username = username;
     }
 */
-public Renter(String username, String address, String phoneNumber){
+    /**
+     * Constructs a new `Renter` object with the given username, phone number, and address.
+     *
+     * @param username the renter's username
+     * @param phoneNumber the renter's phone number
+     * @param address the renter's address
+     */
+    public Renter(String username, String address, String phoneNumber){
 
-    this.username = username;
-    this.phoneNumber = phoneNumber;
-    this.address = address;
-}
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
     /*
     public Renter(int id, String username, String phoneNumber){
         this.username = username;
@@ -40,6 +53,11 @@ public Renter(String username, String address, String phoneNumber){
 
      */
 
+    /**
+     * Validates the renter's username and phone number using the regular expressions {@code REGEX_NAME} and {@code REGEX_PHONE}.
+     *
+     * @return {@code true} if the username and phone number are valid, {@code false} otherwise
+     */
     public boolean validate(){
         return this.username.matches(REGEX_NAME) && this.phoneNumber.matches(REGEX_PHONE);
     }

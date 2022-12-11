@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * JSleep is the main method class
  * @author Ibrahim Rijal
- * @version 11-04-2022
  */
 @SpringBootApplication
 public class JSleep {
@@ -28,9 +27,11 @@ public class JSleep {
 //    }
 
 
-
-
-
+    /**
+     * Main method for JSleep application
+     * This method is used tu run the entire JSleep backend
+     * @param args
+     */
     public static void main(String[] args) {
         JsonDBEngine.Run(JSleep.class);
         SpringApplication.run(JSleep.class, args);

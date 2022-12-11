@@ -20,6 +20,14 @@ import java.util.regex.Pattern;
 // TODO sesuaikan dengan package Anda: import com.netlabJSleepGS.Account;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ PaymentController is a RestController that handles requests and responses for Payment resources. It implements the
+ {@link BasicGetController} interface and provides methods for creating and modifying Payment objects.
+ @see Payment
+ @see BasicGetController
+ @author Ibrahim Rijal
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
@@ -31,6 +39,16 @@ public class PaymentController implements BasicGetController<Payment> {
         return paymentTable;
     }
 
+    /**
+     *
+     * Method to create a new payment for a room book based on the given parameters.
+     * @param buyerId
+     * @param renterId
+     * @param roomId
+     * @param from
+     * @param to
+     * @return
+     */
     @PostMapping("/create")
     public Payment create(
             @RequestParam int buyerId,@RequestParam int renterId,
@@ -84,6 +102,12 @@ public class PaymentController implements BasicGetController<Payment> {
         //return new Payment(buyerId,renterId,roomId,fromtgl,totgl);
 
     }
+
+    /**
+     * Method to confirm the payment based on given id.
+     * @param id
+     * @return
+     */
     @PostMapping("/{id}/accept")
     public boolean accept(@PathVariable int id) {
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
@@ -93,6 +117,12 @@ public class PaymentController implements BasicGetController<Payment> {
         }
         return false;
     }
+
+    /**
+     * Method to cancel the payment based on given id.
+     * @param id
+     * @return
+     */
     @PostMapping("/{id}/cancel")
     public boolean cancel(@PathVariable int id) {
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
@@ -108,6 +138,12 @@ public class PaymentController implements BasicGetController<Payment> {
         return false;
     }
 
+    /**
+     * Method to get rating for the payment based on given id.
+     * @param id
+     * @param rating
+     * @return
+     */
     @PostMapping("/{id}/rating")
     public boolean rating(@PathVariable int id, @RequestParam String rating) {
         Payment payment = Algorithm.<Payment>find(paymentTable, pred -> pred.id == id);
@@ -120,6 +156,13 @@ public class PaymentController implements BasicGetController<Payment> {
         return false;
     }
 
+    /**
+     * Method to get all the payment that belongs to the given Account id.
+     * @param id
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @GetMapping("getAll/{id}")
     List<Payment> getAccountPayment(@PathVariable int id, @RequestParam int page, @RequestParam int pageSize){
         return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> pred.buyerId == id);
